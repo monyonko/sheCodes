@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Assignment 5</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="./src/styles.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+
+  <body>
+    <div class="section">
+      <div class="main">
+        <div id="left">
+          <div class="center-left">
+            <div class="location">
+              <h1 id="place">Location</h1>
+              <h5 id="long">Longitude, Latitude</h5>
+            </div>
+            <p id="date"></p>
+            <p id="time"></p>
+            <span>
+                <div class="icon"></div>
+              <h3 id="description"></h3>
+            </span>
+            <h2 id="temp"></h2>
+            <p id="humidity"></p>
+            <p id="wind"></p>
+            <p id="pressure"></p>
+          </div>
+        </div>
+        <div class="right">
+          <div class="one">
+            <p class="f-date-one">Date</p>
+            <div class="iconSpace">
+              <span class="f-icon"></span>
+              <p class="f-description-one">Description</p>
+            </div>
+            <h5 class="f-temp-one">Temperature</h5>
+          </div>
+          <div class="two">
+            <p class="f-date-one">Date</p>
+            <div class="iconSpace">
+              <span class="f-icon"></span>
+              <p class="f-description-one">Description</p>
+            </div>
+            <h5 class="f-temp-one">Temperature</h5>
+          </div>
+          <div class="three">
+            <p class="f-date-one">Date</p>
+            <div class="iconSpace">
+              <span class="f-icon"></span>
+              <p class="f-description-one">Description</p>
+            </div>
+            <h5 class="f-temp-one">Temperature</h5>
+          </div>
+          <div class="four">
+            <p class="f-date-one">Date</p>
+            <div class="iconSpace">
+              <span class="f-icon"></span>
+              <p class="f-description-one">Description</p>
+            </div>
+            <h5 class="f-temp-one">Temperature</h5>
+          </div>
+          <div class="five">
+            <p class="f-date-one">Date</p>
+            <div class="iconSpace">
+              <span class="f-icon"></span>
+              <p class="f-description-one">Description</p>
+            </div>
+            <h5 class="f-temp-one">Temperature</h5>
+          </div>
+        </div>
+      </div>
+      <div id="search">
+          <form action="">
+            <input id="search-input" type="text" />
+            <button id="submit_location" type="submit">search</button>
+          </form>
+          <button id="get-location">current</button>
+      </div>
+    </div>
+    <div class="more-items">
+      <button>
+        See more..
+      </button>
+      <div class="drop-down">
+        <ul>
+          <li>Weather Maps</li>
+          <li>Air pollution</li>
+          <li>Agriculture</li>
+          <li>Create playlist</li>
+          <li>Activity suggestion</li>
+          <li>Road risk</li>
+          <li>History</li>
+        </ul>
+      </div>
+    </div>
+    <div class="next-section">
+      <div class="first">
+        <div class="left">
+          <button id="weather-maps">Weather Maps</button><br>
+          <button id="air-pollution">Air pollution</button><br>
+          <button id="agriculture">Agriculture</button>
+        </div>
+        <div class="right">
+          <button id="music">Create Playlist</button>
+          <button id="activity-suggestion">Activity suggestion</button>
+          <button id="road-risk">Road risk</button>
+        </div>
+      </div>
+      <button id="history">History</button>
+    </div>
+    
+    
+
+    <script src="src/index.js"></script>
+  </body>
+</html>

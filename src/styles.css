@@ -1,0 +1,259 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Roboto+Condensed&display=swap');
+body {
+    font-family: sans-serif;
+    box-sizing: border-box;
+    padding: 0;
+  }
+  .section {
+    margin: 0 auto;
+    padding: 2vh;
+    width: 40vw;
+    border-radius: 2vh;
+    background: rgb(219, 200, 200);
+  }
+  .main {
+    display: flex;
+  }
+  #left {
+    flex: 2;
+  }
+  #left h1,
+  h3,
+  h2,
+  h4,
+  h5,
+  p {
+    margin: 0;
+  }
+  .center-left {
+    display: block;
+    margin: 0 auto;
+  }
+  .location {
+    background: #fff;
+    padding: 1vh;
+    margin-top: 1vh;
+  }
+  .location h1,
+  h5 {
+    margin: 0 auto;
+  }
+  .location h5 {
+    text-align: center;
+  }
+  .location #place {
+    text-transform: capitalize;
+  }
+  .center-left span{
+      display: flex;
+  }
+  .center-left span .icon{
+      flex:1;
+  }
+  .center-left span #description{
+      flex:2;
+      text-transform: capitalize;
+      padding-top: 3vh;    
+  }
+  #temp{
+      text-align: center;
+  }
+  .right {
+    flex: 1;
+  }
+  .right div {
+    background-color: blanchedalmond;
+    border-radius: 2px;
+    margin: 1vh;
+    padding: 0.1vh;
+    text-align: center;
+    font-size: small;
+  }
+  .f-description-one{
+    text-transform: capitalize;
+  }
+  .f-temp-one, .f-date-one{
+    padding-top: 0;
+  }
+
+  .iconSpace{
+    display: flex;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  .iconSpace .icon{
+    flex:1
+  }
+  .iconSpace .f-description-one{
+    flex:1
+  }
+  .next-section{
+    display:none;
+    width:40vw;
+    font-size: larger;
+    margin: 3vh auto;
+  }
+  .more-items{
+    font-size: larger;
+    margin: 3vh auto;
+
+  }
+  .next-section button, .more-items button{
+    width:fit-content;
+    font-size: 3vh;
+    margin: 3vh;
+    border-radius: 1vh;
+    background: linear-gradient( #5f2626,rgb(185, 154, 154), #612727);
+  }
+  .next-section .first{
+    display: flex;
+  }
+  .left{
+    flex:1;
+    display: block;
+    justify-items: flex-start;
+    
+  }
+  .right{
+    flex:1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  
+  .right button{
+    justify-self:flex-end;
+  }
+  
+  #history, .more-items button{
+    display: block;
+    margin: 0 auto;
+  }
+  .drop-down{
+    display: none;
+  }
+  .more-items button:hover .drop-down{
+    display: block;
+  }
+  .more-items ul{
+    display: block;
+    margin: 0 auto;
+    background: rgb(206, 193, 193);
+    border-radius: 0.001vh;
+    margin-top: 0;
+    width:max-content;
+    padding: 1vh;
+  }
+  .more-items ul li{
+    list-style: none;
+    border-bottom: 0.001vh solid black;
+    text-align: left;
+  }
+
+  
+@media only screen and (min-width:320px) {
+      button{
+        font-family: 'Josefin Sans', sans-serif;
+        font-size: 1vh;
+      }
+    .section{
+        width:80vw;
+    }
+    #search{
+        display: flex;
+        
+    }
+    #search input{
+        width:60% !important;
+        position: relative;
+        height: 3vh;
+         
+    }
+    #search #submit_location{
+        width:15% !important;
+        font-size: small;
+        height:4vh;
+        position: absolute;
+        margin-left: 1vh;
+        
+        
+    }
+    #search #get-location{
+        font-size: small;
+        height:4vh;
+        
+    }
+
+  }
+@media only screen and (max-width:480px){
+    body{
+        font-size: 2vh;
+    }
+    .section{
+        width:80vw;
+    }
+    #search form{
+        width:58vw;
+    }
+    #search form input{
+        width:40vw !important;   
+    }
+    #search form #submit_location{
+        width: 15vw !important;
+    }
+    #search #get-location{
+        width: 15vw !important;
+        margin-left: 5vw;
+    }
+
+}
+
+@media only screen and (min-width:481px){
+    .section{
+        width:50vw !important;
+        padding: 3vh;
+    }
+    #search form{
+        width:40vw;  
+    }
+    #search form input{
+        height:3vh;
+    }
+    #search form #submit_location{
+        width:10vw !important;
+    }
+    #search #get-location{
+        margin-left:2vw ;
+        width:12vw;
+    }
+}
+@media only screen and (min-width:769px){
+    .section{
+        width:40vw !important;
+    }
+    #search form{
+        width:30vw;   
+    }
+    #search form input{
+        height:3vh;
+    }
+    #search form #submit_location{
+        width:6vw !important;
+    }
+    #search #get-location{
+        margin-left:4vw ;
+        width:6vw;
+    }
+    .more-items{
+      display:none;
+    }
+    .next-section{
+      display:block;
+    }
+    
+}
+
+
+
+  
