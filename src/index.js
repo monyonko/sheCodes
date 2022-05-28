@@ -1,6 +1,6 @@
+import {apiKey} from './api.js'
 
 const form = document.querySelector('form');
-let apiKey = "08c521f87119714e709b4af5654ffa5c";
 let limit = 1;
 let search = document.querySelector("#search-input");
 let lat;
@@ -81,38 +81,45 @@ function showApects(response) {
 
 function populatingForecasts(input, response){
   let a = 0
+  let i;
   for(i in right){
     const fDate = document.getElementsByClassName("f-date-one")[a]
     const fDescription = document.getElementsByClassName("f-description-one")[a]
     const fTemp = document.getElementsByClassName("f-temp-one")[a]
     const forecastIconDiv = document.getElementsByClassName('f-icon')[a]
+    let forecastDate; let forecastedIcon; let forecastTemp; let forecastDescription; let forecastIcon;
     if(input<=39){
-      forecastDate = ((response.data.list[input].dt_txt).split(" "))[0];
-      console.log(forecastDate)
-      //forecastedDate = forecastDate.substring(1:11);
-      forecastedIcon = response.data.list[input].weather[0].icon
-      console.log(forecastedIcon)
-      forecastTemp = response.data.list[input].main.temp
-      console.log(forecastTemp)
-      forecastDescription = response.data.list[input].weather[0].description
-      console.log(forecastDescription)
-      forecastIcon = document.createElement("img")
-      forecastIcon.style.margin = 0
-      forecastIcon.style.padding = 0
-      forecastIcon.src = `http://openweathermap.org/img/w/${forecastedIcon}.png`
-      forecastIconDiv.appendChild(forecastIcon)
+      function forecastedValues(response, input){
+        forecastDate = ((response.data.list[input].dt_txt).split(" "))[0];
+        console.log(forecastDate)
+        //forecastedDate = forecastDate.substring(1:11);
+        forecastedIcon = response.data.list[input].weather[0].icon
+        console.log(forecastedIcon)
+        forecastTemp = response.data.list[input].main.temp
+        console.log(forecastTemp)
+        forecastDescription = response.data.list[input].weather[0].description
+        console.log(forecastDescription)
+        forecastIcon = document.createElement("img")
+        forecastIcon.style.margin = 0
+        forecastIcon.style.padding = 0
+        forecastIcon.src = `http://openweathermap.org/img/w/${forecastedIcon}.png`
+        forecastIconDiv.appendChild(forecastIcon)
+        if (!forecastDate){
+          let tempInput = input--;
+          forecastedValues(response, tempInput)
+          forecastDate = ((response.data.list[input].dt_txt).split(" "))[0];
+          console.log(forecastDate)
+        }
+      }
+      forecastedValues(response, input)
       input+=8
-  }
-  
+      
+      }
   fDate.innerHTML = forecastDate;
   fDescription.innerHTML = forecastDescription
-  fTemp.innerHTML = forecastTemp
+  fTemp.innerHTML = `${forecastTemp}&deg`
   a++
-  }
- 
- 
-  
-
+}
 }
 function populateForecasts(response){
   console.log(response)
@@ -145,8 +152,8 @@ function populateForecasts(response){
 
 }
 function fiveDayWeatherForecast(lat, long){
-  weatherForecast = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
-  axios.get(weatherForecast).then(populateForecasts)
+  apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
+  axios.get(apiUrl).then(populateForecasts)
 }
 
 function showGeoLocation(response) {
