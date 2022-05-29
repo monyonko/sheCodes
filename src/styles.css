@@ -15,7 +15,7 @@ body {
     display: flex;
   }
   #left {
-    flex: 2;
+    flex:2;
   }
   #left h1,
   h3,
@@ -55,8 +55,14 @@ body {
       text-transform: capitalize;
       padding-top: 3vh;    
   }
-  #temp{
-      text-align: center;
+  .metric{
+    display: flex;
+  }
+  .metric a{
+    text-decoration: none;
+  }
+  .metric #fahreinheit{
+    color: black;
   }
   .right {
     flex: 1;

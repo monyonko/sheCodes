@@ -22,7 +22,15 @@
                 <div class="icon"></div>
               <h3 id="description"></h3>
             </span>
-            <h2 id="temp"></h2>
+            <span class="tempSpan">
+              <h2 id="temp"></h2>
+              <sup class="metric">
+                <a id="celsius" href="">&degC</a>
+                <p>|</p>
+                <a id="fahreinheit" href="">F</a>
+              </sup>
+            </span>
+            
             <p id="humidity"></p>
             <p id="wind"></p>
             <p id="pressure"></p>
@@ -73,7 +81,7 @@
       </div>
       <div id="search">
           <form action="">
-            <input id="search-input" type="text" />
+            <input id="search-input" placeholder="Type your location" type="text" />
             <button id="submit_location" type="submit">search</button>
           </form>
           <button id="get-location">current</button>

@@ -6,6 +6,10 @@ let search = document.querySelector("#search-input");
 let lat;
 let lon;
 let apiUrl;
+const celsius = document.querySelector("#celsius")
+const fahreinheit = document.querySelector("#fahreinheit")
+let celsiusConversion = "metric"
+const fahreinheitConversion = "imperial"
 const right = document.getElementsByClassName('right')
 const place = document.querySelector("#place");
 const geoLoc = document.querySelector("#long");
@@ -73,7 +77,7 @@ function showApects(response) {
     img.src = `http://openweathermap.org/img/w/${icon}.png`
     weatherIcon.appendChild(img);
     description.innerHTML = response.data.weather[0].description;
-    temp.innerHTML = ` ${a} &degC`;
+    temp.innerHTML = a
     humidity.innerHTML = `Humidity: ${b}`;
     wind.innerHTML = `Wind speed: ${c} `;
     pressure.innerHTML = `Pressure: ${d} `;
@@ -88,36 +92,37 @@ function populatingForecasts(input, response){
     const fTemp = document.getElementsByClassName("f-temp-one")[a]
     const forecastIconDiv = document.getElementsByClassName('f-icon')[a]
     let forecastDate; let forecastedIcon; let forecastTemp; let forecastDescription; let forecastIcon; 
-    if(input<=39){
-      function forecastedValues(response, input){
-        forecastDate = ((response.data.list[input].dt_txt).split(" "))[0];
-        console.log(forecastDate)
-        //forecastedDate = forecastDate.substring(1:11);
-        forecastedIcon = response.data.list[input].weather[0].icon
-        console.log(forecastedIcon)
-        forecastTemp = response.data.list[input].main.temp
-        console.log(forecastTemp)
-        forecastDescription = response.data.list[input].weather[0].description
-        console.log(forecastDescription)
-        forecastIcon = document.createElement("img")
-        forecastIcon.style.margin = 0
-        forecastIcon.style.padding = 0
-        forecastIcon.src = `http://openweathermap.org/img/w/${forecastedIcon}.png`
-        forecastIconDiv.appendChild(forecastIcon)
-        if (!forecastDate){
-          let tempInput = input--;
-          forecastedValues(response, tempInput)
-          forecastDate = ((response.data.list[input].dt_txt).split(" "))[0];
-          console.log(forecastDate)
-        }
-      }
+    function forecastedValues(response, input){
+      forecastDate = ((response.data.list[input].dt_txt).split(" "))[0];
+      console.log(forecastDate)
+      //forecastedDate = forecastDate.substring(1:11);
+      forecastedIcon = response.data.list[input].weather[0].icon
+      console.log(forecastedIcon)
+      forecastTemp = response.data.list[input].main.temp
+      console.log(forecastTemp)
+      forecastDescription = response.data.list[input].weather[0].description
+      console.log(forecastDescription)
+      forecastIcon = document.createElement("img")
+      forecastIcon.style.margin = 0
+      forecastIcon.style.padding = 0
+      forecastIcon.src = `http://openweathermap.org/img/w/${forecastedIcon}.png`
+      forecastIconDiv.appendChild(forecastIcon)
+    }
+    
+    if (input<=39){
       forecastedValues(response, input)
       input+=8
-      
+    }else {
+      input--
+      let tempInput = input;
+      forecastedValues(response, tempInput)
+      forecastDate = ((response.data.list[input].dt_txt).split(" "))[0];
+      console.log(forecastDate)
       }
+      
   fDate.innerHTML = forecastDate;
   fDescription.innerHTML = forecastDescription
-  fTemp.innerHTML = `${forecastTemp}&deg`
+  fTemp.innerHTML = `${forecastTemp}&degC`
   a++
 }
 }
@@ -152,7 +157,7 @@ function populateForecasts(response){
 
 }
 function fiveDayWeatherForecast(lat, long){
-  apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
+  apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=${celsiusConversion}&appid=${apiKey}`;
   axios.get(apiUrl).then(populateForecasts)
 }
 
@@ -165,24 +170,29 @@ function showGeoLocation(response) {
   geoLoc.innerHTML = `${lat}, ${lon}`;
   //5 day weatherForecast
   fiveDayWeatherForecast(lat, long)
-  apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
+  apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=${celsiusConversion}&appid=${apiKey}`;
   axios.get(apiUrl).then(showApects);
 }
-
+//using lat and long
 function getInput(event) {
   event.preventDefault();
-  const something = search.value.trim();
-  console.log(something)
-  if (something !== ""){
-      let input = something;
-      let geoCodeUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${input}&limit=${limit}&appid=${apiKey}`;
-      console.log(input);
-      axios.get(geoCodeUrl).then(showGeoLocation);
-      search.value="";
-  };
-  
+  const defaultLocation = "Juja"
+  const inputLocation = search.value.trim();
+  console.log(inputLocation)
+  if (inputLocation !== ""){
+      geoCode(inputLocation)
+  }else{
+    geoCode(defaultLocation)
+  }
+  function geoCode(input){
+    let geoCodeUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${input}&limit=${limit}&appid=${apiKey}`;
+    console.log(input);
+    axios.get(geoCodeUrl).then(showGeoLocation);
+    search.value="";
+  } 
 }
-function showLocation() {
+
+function showLocation() { 
   navigator.geolocation.getCurrentPosition((position) => {
     lat = position.coords.latitude;
     lon = position.coords.longitude;
@@ -195,13 +205,32 @@ function showLocation() {
         geoLoc.innerHTML = `${lat}, ${lon}`;
         lat = position.coords.latitude;
         lon = position.coords.longitude;
-        apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
+        apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=${celsiusConversion}&appid=${apiKey}`;
         axios.get(apiUrl).then(showApects);
 
     });
 });
   
 }
+window.addEventListener("load", getInput)
 search.addEventListener("click", getInput);
 form.addEventListener("submit", getInput);
 getLocation.addEventListener("click", showLocation);
+fahreinheit.addEventListener("click", ()=>{
+  event.preventDefault()
+  let current = temp.innerHTML
+  let degreeToFahreinheit = current * 1.8
+  temp.innerHTML = degreeToFahreinheit;
+  celsius.style.color = "black"
+  fahreinheit.style.color = "blue"
+})
+celsius.addEventListener("click", ()=>{
+  event.preventDefault()
+  let current = temp.innerHTML
+  console.log(current)
+  let fahreinheitToDegree = current/1.8
+  temp.innerHTML = fahreinheitToDegree;
+  celsius.style.color = "blue"
+  fahreinheit.style.color = "black"
+})
+
