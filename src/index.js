@@ -87,7 +87,7 @@ function populatingForecasts(input, response){
     const fDescription = document.getElementsByClassName("f-description-one")[a]
     const fTemp = document.getElementsByClassName("f-temp-one")[a]
     const forecastIconDiv = document.getElementsByClassName('f-icon')[a]
-    let forecastDate; let forecastedIcon; let forecastTemp; let forecastDescription; let forecastIcon;
+    let forecastDate; let forecastedIcon; let forecastTemp; let forecastDescription; let forecastIcon; 
     if(input<=39){
       function forecastedValues(response, input){
         forecastDate = ((response.data.list[input].dt_txt).split(" "))[0];
