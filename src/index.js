@@ -184,7 +184,7 @@ function getInput(event) {
     geoCode(defaultLocation)
   }
   function geoCode(input){
-    let geoCodeUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${input}&limit=${limit}&appid=${apiKey}`;
+    let geoCodeUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${input}&limit=${limit}&appid=${apiKey}`;
     console.log(input);
     axios.get(geoCodeUrl).then(showGeoLocation);
     search.value="";
@@ -195,7 +195,7 @@ function showLocation() {
   navigator.geolocation.getCurrentPosition((position) => {
     lat = position.coords.latitude;
     lon = position.coords.longitude;
-    let reverseGeoCodeUrl = `http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=${limit}&appid=${apiKey}`;
+    let reverseGeoCodeUrl = `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=${limit}&appid=${apiKey}`;
     axios.get(reverseGeoCodeUrl).then((response)=>{
         console.log(response)
         const popName = response.data[0].name;
