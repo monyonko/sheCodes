@@ -1,11 +1,10 @@
-let apiKey = "08c521f87119714e709b4af5654ffa5c"
-
 const form = document.querySelector('form');
 let limit = 1;
 let search = document.querySelector("#search-input");
 let lat;
 let lon;
 let apiUrl;
+let apiKey = "08c521f87119714e709b4af5654ffa5c"
 const celsius = document.querySelector("#celsius")
 const fahreinheit = document.querySelector("#fahreinheit")
 let celsiusConversion = "metric"
