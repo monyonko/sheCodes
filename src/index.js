@@ -5,6 +5,7 @@ let lat;
 let lon;
 let apiUrl;
 let apiKey = "08c521f87119714e709b4af5654ffa5c"
+const openStreet = document.querySelector('.open-street')
 const celsius = document.querySelector("#celsius")
 const fahreinheit = document.querySelector("#fahreinheit")
 let celsiusConversion = "metric"
@@ -171,6 +172,7 @@ function showGeoLocation(response) {
   fiveDayWeatherForecast(lat, long)
   apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=${celsiusConversion}&appid=${apiKey}`;
   axios.get(apiUrl).then(showApects);
+  mapDetails(lat,lon)
 }
 //using lat and long
 function getInput(event) {
@@ -195,6 +197,7 @@ function showLocation() {
   navigator.geolocation.getCurrentPosition((position) => {
     lat = position.coords.latitude;
     lon = position.coords.longitude;
+    mapDetails(lat,lon)
     let reverseGeoCodeUrl = `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=${limit}&appid=${apiKey}`;
     axios.get(reverseGeoCodeUrl).then((response)=>{
         console.log(response)
@@ -211,6 +214,11 @@ function showLocation() {
 });
   
 }
+function mapDetails(lat, lon){
+  let info = "https://www.openstreetmap.org/#map=13/${lat}/${lon}"
+  openStreet.href = info;
+}
+
 window.addEventListener("load", getInput)
 search.addEventListener("click", getInput);
 form.addEventListener("submit", getInput);

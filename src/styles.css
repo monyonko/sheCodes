@@ -64,6 +64,10 @@ body {
   .metric #fahreinheit{
     color: black;
   }
+  iframe{
+    width:30vw; 
+    height:30vh;
+  }
   .right {
     flex: 1;
   }
@@ -74,18 +78,21 @@ body {
     padding: 0.1vh;
     text-align: center;
     font-size: small;
+    
   }
   .f-description-one{
     text-transform: capitalize;
   }
   .f-temp-one, .f-date-one{
-    padding-top: 0;
+    padding: 0;
+    margin: 0;
   }
 
   .iconSpace{
     display: flex;
     margin: 0 auto;
     padding: 0;
+    height: 4vh;
   }
 
   .iconSpace .icon{
@@ -236,7 +243,7 @@ body {
 }
 @media only screen and (min-width:769px){
     .section{
-        width:40vw !important;
+        width:45vw !important;
     }
     #search form{
         width:30vw;   
