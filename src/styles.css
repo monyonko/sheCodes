@@ -173,6 +173,10 @@ body {
     .section{
         width:80vw;
     }
+    iframe{
+      width:40vw;
+      height: 40vh;
+    }
     #search{
         display: flex;
         
@@ -206,6 +210,10 @@ body {
     .section{
         width:80vw;
     }
+    iframe{
+      width:40vw;
+      height: 40vh;
+    }
     #search form{
         width:58vw;
     }
@@ -227,6 +235,10 @@ body {
         width:50vw !important;
         padding: 3vh;
     }
+    iframe{
+      width:25vw;
+      height: 25vh;
+    }
     #search form{
         width:40vw;  
     }
@@ -247,6 +259,10 @@ body {
     }
     #search form{
         width:30vw;   
+    }
+    iframe{
+      width:30vw;
+      height: 20vh;
     }
     #search form input{
         height:3vh;
