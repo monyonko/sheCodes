@@ -74,7 +74,7 @@ function showApects(response) {
     const c = response.data.wind.speed
     const d = response.data.main.pressure
     
-    img.src = `http://openweathermap.org/img/w/${icon}.png`
+    img.src = `https://openweathermap.org/img/w/${icon}.png`
     weatherIcon.appendChild(img);
     description.innerHTML = response.data.weather[0].description;
     temp.innerHTML = a
@@ -104,7 +104,7 @@ function populatingForecasts(input, response){
       forecastIcon = document.createElement("img")
       forecastIcon.style.margin = 0
       forecastIcon.style.padding = 0
-      forecastIcon.src = `http://openweathermap.org/img/w/${forecastedIcon}.png`
+      forecastIcon.src = `https://openweathermap.org/img/w/${forecastedIcon}.png`
       forecastIconDiv.appendChild(forecastIcon)
     }
     
