@@ -95,7 +95,6 @@ function populatingForecasts(input, response){
     function forecastedValues(response, input){
       forecastDate = ((response.data.list[input].dt_txt).split(" "))[0];
       console.log(forecastDate)
-      //forecastedDate = forecastDate.substring(1:11);
       forecastedIcon = response.data.list[input].weather[0].icon
       console.log(forecastedIcon)
       forecastTemp = response.data.list[input].main.temp
@@ -215,7 +214,7 @@ function showLocation() {
   
 }
 function mapDetails(lat, lon){
-  let info = "https://www.openstreetmap.org/#map=13/${lat}/${lon}"
+  let info = `https://www.openstreetmap.org/#map=13/${lat}/${lon}`
   openStreet.href = info;
 }
 
