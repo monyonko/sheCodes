@@ -12,10 +12,8 @@ body {
     background: rgb(219, 200, 200);
   }
   .main {
-    display: flex;
-  }
-  #left {
-    flex:2;
+    display: block;
+    min-width: 130px;
   }
   #left h1,
   h3,
@@ -25,14 +23,25 @@ body {
   p {
     margin: 0;
   }
-  .center-left {
-    display: block;
-    margin: 0 auto;
+  .a{
+    display:flex;
   }
+  .section-one-a{
+    flex:1;
+  }
+  .section-two-a{
+    flex:1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
   .location {
-    background: #fff;
     padding: 1vh;
     margin-top: 1vh;
+    border-radius: 0.2vh;
+    background: linear-gradient( #fff,rgb(243, 240, 240), #e4dbdb);
   }
   .location h1,
   h5 {
@@ -65,19 +74,21 @@ body {
     color: black;
   }
   iframe{
-    width:30vw; 
+    width:100%; 
     height:30vh;
   }
   .right {
-    flex: 1;
+    display: flex;
+    overflow-x:scroll;
+    
   }
   .right div {
-    background-color: blanchedalmond;
+    flex:1vh;
+    background: linear-gradient( #fff,rgb(243, 240, 240), #e4dbdb);
     border-radius: 2px;
-    margin: 1vh;
-    padding: 0.1vh;
+    margin: 0.5vh;
     text-align: center;
-    font-size: small;
+    font-size: smaller;
     
   }
   .f-description-one{
@@ -88,11 +99,9 @@ body {
     margin: 0;
   }
 
-  .iconSpace{
-    display: flex;
+  .right .iconSpace{
     margin: 0 auto;
     padding: 0;
-    height: 4vh;
   }
 
   .iconSpace .icon{
@@ -122,20 +131,20 @@ body {
   .next-section .first{
     display: flex;
   }
-  .left{
+  .next-section .left{
     flex:1;
     display: block;
     justify-items: flex-start;
     
   }
-  .right{
+  .next-section .right{
     flex:1;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
   }
   
-  .right button{
+  .next-section .right button{
     justify-self:flex-end;
   }
   
@@ -174,11 +183,13 @@ body {
         width:80vw;
     }
     iframe{
-      width:40vw;
+      width:100%;
+      min-width: 130px;
       height: 40vh;
     }
     #search{
         display: flex;
+        min-width: 130px;
         
     }
     #search input{
@@ -211,7 +222,7 @@ body {
         width:80vw;
     }
     iframe{
-      width:40vw;
+      width:100%;
       height: 40vh;
     }
     #search form{
@@ -236,7 +247,7 @@ body {
         padding: 3vh;
     }
     iframe{
-      width:25vw;
+      width:100%;
       height: 25vh;
     }
     #search form{
@@ -261,7 +272,7 @@ body {
         width:30vw;   
     }
     iframe{
-      width:30vw;
+      width:100%;
       height: 20vh;
     }
     #search form input{

@@ -8,6 +8,8 @@ let apiKey = "08c521f87119714e709b4af5654ffa5c"
 const openStreet = document.querySelector('.open-street')
 const celsius = document.querySelector("#celsius")
 const fahreinheit = document.querySelector("#fahreinheit")
+celsius.style.color = "blue"
+fahreinheit.style.color = "black"
 let celsiusConversion = "metric"
 const fahreinheitConversion = "imperial"
 const right = document.getElementsByClassName('right')
@@ -64,11 +66,11 @@ if (actualMonth < 10) {
 }
 
 date.innerHTML = actualDay + "  " + actualDate;
-
+const img = document.createElement("img")
+let forecastIcon = document.createElement("img")
 function showApects(response) {
     console.log(response);
     const icon = response.data.weather[0].icon
-    const img = document.createElement("img")
     const a = response.data.main.temp;
     const b = response.data.main.humidity
     const c = response.data.wind.speed
@@ -91,7 +93,7 @@ function populatingForecasts(input, response){
     const fDescription = document.getElementsByClassName("f-description-one")[a]
     const fTemp = document.getElementsByClassName("f-temp-one")[a]
     const forecastIconDiv = document.getElementsByClassName('f-icon')[a]
-    let forecastDate; let forecastedIcon; let forecastTemp; let forecastDescription; let forecastIcon; 
+    let forecastDate; let forecastedIcon; let forecastTemp; let forecastDescription; let forecastIcon;  
     function forecastedValues(response, input){
       forecastDate = ((response.data.list[input].dt_txt).split(" "))[0];
       console.log(forecastDate)
@@ -165,7 +167,7 @@ function showGeoLocation(response) {
   lon = response.data[0].lon;
   const country = response.data[0].country;
   const popName = response.data[0].name;
-  place.innerHTML = `${popName}, ${country}`;
+  place.innerHTML = `Locale     : ${popName}, ${country}`;
   geoLoc.innerHTML = `${lat}, ${lon}`;
   //5 day weatherForecast
   fiveDayWeatherForecast(lat, long)
@@ -219,24 +221,35 @@ function mapDetails(lat, lon){
 }
 
 window.addEventListener("load", getInput)
-search.addEventListener("click", getInput);
+search.addEventListener("click",getInput);
 form.addEventListener("submit", getInput);
 getLocation.addEventListener("click", showLocation);
-fahreinheit.addEventListener("click", ()=>{
-  event.preventDefault()
-  let current = temp.innerHTML
-  let degreeToFahreinheit = current * 1.8
-  temp.innerHTML = degreeToFahreinheit;
-  celsius.style.color = "black"
-  fahreinheit.style.color = "blue"
+fahreinheit.addEventListener("click", ()=> {
+  clicked = false;
+  if (!clicked){
+    event.preventDefault()
+    let current = temp.innerHTML
+    let degreeToFahreinheit = (current * 1.8).toFixed(2)
+    temp.innerHTML = degreeToFahreinheit;
+    celsius.style.color = "black"
+    fahreinheit.style.color = "blue"
+    clicked = true;
+  }
 })
+
 celsius.addEventListener("click", ()=>{
-  event.preventDefault()
-  let current = temp.innerHTML
-  console.log(current)
-  let fahreinheitToDegree = current/1.8
-  temp.innerHTML = fahreinheitToDegree;
-  celsius.style.color = "blue"
-  fahreinheit.style.color = "black"
+    event.preventDefault()
+    var clicked = true;
+    if (!clicked){
+      let current = temp.innerHTML
+      console.log(current)
+      let fahreinheitToDegree = (current/1.8).toFixed(2)
+      temp.innerHTML = fahreinheitToDegree;
+      celsius.style.color = "blue"
+      fahreinheit.style.color = "black"
+      clicked = true;
+    }
+   
+  
 })
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Assignment 5</title>
+    <title>sheCodesPlus</title>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="./src/styles.css">
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -12,32 +12,43 @@
       <div class="main">
         <div id="left">
           <div class="center-left">
-            <div class="location">
-              <h1 id="place">Location</h1>
-              <h5 id="long">Longitude, Latitude</h5>
+            <div class="a">
+              <div class="section-one-a">
+                <div class="location">
+                  <h1 id="place">Location</h1>
+                  <h5 id="long">Longitude, Latitude</h5>
+                </div>
+                <p id="date"></p>
+                <p id="time"></p>
+                <span>
+                    <div class="icon"></div>
+                  <h3 id="description"></h3>
+                </span>
+  
+              </div>
+              
+              <div class="section-two-a">
+                <div class="contents">
+                  <span class="tempSpan">
+                    <h1 id="temp"></h1>
+                    <sup class="metric">
+                      <a id="celsius" href="">&degC</a>
+                      <p>|</p>
+                      <a id="fahreinheit" href="">F</a>
+                    </sup>
+                  </span>         
+                  <p id="humidity"></p>
+                  <p id="wind"></p>
+                  <p id="pressure"></p>
+
+                </div>
+                  
+              </div>
             </div>
-            <p id="date"></p>
-            <p id="time"></p>
-            <span>
-                <div class="icon"></div>
-              <h3 id="description"></h3>
-            </span>
-            <span class="tempSpan">
-              <h2 id="temp"></h2>
-              <sup class="metric">
-                <a id="celsius" href="">&degC</a>
-                <p>|</p>
-                <a id="fahreinheit" href="">F</a>
-              </sup>
-            </span>
-            
-            <p id="humidity"></p>
-            <p id="wind"></p>
-            <p id="pressure"></p>
           </div>
-          <iframe frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=36.93002700805665%2C-1.1500539927607416%2C37.06151962280274%2C-1.0467328465942716&amp;layer=mapnik" style="border: 1px solid black"></iframe><br/>
-          <small><a class="open-street" ></a></small>
         </div>
+        <iframe frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=36.93002700805665%2C-1.1500539927607416%2C37.06151962280274%2C-1.0467328465942716&amp;layer=mapnik" style="border: 1px solid black"></iframe><br/>
+        <small><a class="open-street" ></a></small>
         <div class="right">
           <div class="one">
             <p class="f-date-one">Date</p>
@@ -125,5 +136,7 @@
     
 
     <script type="module" src="src/index.js"></script>
+    
+
   </body>
 </html>

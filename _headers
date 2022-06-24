@@ -2,6 +2,6 @@
 /index.html
   # headers for that path:
   X-Frame-Options: SAMEORIGIN
-  X-XSS-Protection: 1; mode=block
+ 
 
 
