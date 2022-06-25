@@ -219,37 +219,47 @@ function mapDetails(lat, lon){
   let info = `https://www.openstreetmap.org/#map=13/${lat}/${lon}`
   openStreet.href = info;
 }
-
-window.addEventListener("load", getInput)
-search.addEventListener("click",getInput);
-form.addEventListener("submit", getInput);
-getLocation.addEventListener("click", showLocation);
-fahreinheit.addEventListener("click", ()=> {
-  clicked = false;
-  if (!clicked){
+let fahreinheitClicked = false;
+celsius.style.color = "blue"
+fahreinheit.style.color = "black"
+function fahreinheitConverter(){
     event.preventDefault()
     let current = temp.innerHTML
     let degreeToFahreinheit = (current * 1.8).toFixed(2)
     temp.innerHTML = degreeToFahreinheit;
     celsius.style.color = "black"
     fahreinheit.style.color = "blue"
-    clicked = true;
-  }
-})
-
-celsius.addEventListener("click", ()=>{
-    event.preventDefault()
-    var clicked = true;
-    if (!clicked){
-      let current = temp.innerHTML
+    fahreinheitClicked = true;
+}
+function celsiusConverter(){
+    let current = temp.innerHTML
       console.log(current)
       let fahreinheitToDegree = (current/1.8).toFixed(2)
       temp.innerHTML = fahreinheitToDegree;
       celsius.style.color = "blue"
       fahreinheit.style.color = "black"
-      clicked = true;
-    }
-   
+      fahreinheitClicked = false;
+}
+function unitCelsiusConversion(){
+  fahreinheitClicked ? celsiusConverter() : void(0)
+}
+function unitFahreinheitConversion(){
+  !fahreinheitClicked ? fahreinheitConverter() : void(0)
+}
+
+
+window.addEventListener("load", getInput)
+search.addEventListener("click",getInput);
+form.addEventListener("submit", getInput);
+getLocation.addEventListener("click", showLocation);
+fahreinheit.addEventListener("click", ()=> {
+  event.preventDefault()
+  unitFahreinheitConversion() 
   
 })
+
+celsius.addEventListener("click", ()=>{
+    event.preventDefault()
+    unitCelsiusConversion()    
+    })
 

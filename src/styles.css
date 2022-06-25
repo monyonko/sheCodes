@@ -78,9 +78,8 @@ body {
     height:30vh;
   }
   .right {
-    display: flex;
-    overflow-x:scroll;
-    
+    display: flex; 
+    margin-bottom: 2vh;
   }
   .right div {
     flex:1vh;
@@ -187,6 +186,9 @@ body {
       min-width: 130px;
       height: 40vh;
     }
+    .right{
+      overflow-x:scroll;
+    }
     #search{
         display: flex;
         min-width: 130px;
@@ -225,6 +227,9 @@ body {
       width:100%;
       height: 40vh;
     }
+    .right{
+      overflow-x:hidden;
+    }
     #search form{
         width:58vw;
     }
@@ -249,6 +254,9 @@ body {
     iframe{
       width:100%;
       height: 25vh;
+    }
+    .right{
+      overflow-x:hidden;
     }
     #search form{
         width:40vw;  
