@@ -8,10 +8,9 @@ let apiKey = "08c521f87119714e709b4af5654ffa5c"
 const openStreet = document.querySelector('.open-street')
 const celsius = document.querySelector("#celsius")
 const fahreinheit = document.querySelector("#fahreinheit")
+let metric = "metric"
 celsius.style.color = "blue"
 fahreinheit.style.color = "black"
-let celsiusConversion = "metric"
-const fahreinheitConversion = "imperial"
 const right = document.getElementsByClassName('right')
 const place = document.querySelector("#place");
 const geoLoc = document.querySelector("#long");
@@ -67,7 +66,6 @@ if (actualMonth < 10) {
 
 date.innerHTML = actualDay + "  " + actualDate;
 const img = document.createElement("img")
-let forecastIcon = document.createElement("img")
 function showApects(response) {
     console.log(response);
     const icon = response.data.weather[0].icon
@@ -85,6 +83,7 @@ function showApects(response) {
     pressure.innerHTML = `Pressure: ${d} `;
 }
 
+
 function populatingForecasts(input, response){
   let a = 0
   let i;
@@ -93,7 +92,7 @@ function populatingForecasts(input, response){
     const fDescription = document.getElementsByClassName("f-description-one")[a]
     const fTemp = document.getElementsByClassName("f-temp-one")[a]
     const forecastIconDiv = document.getElementsByClassName('f-icon')[a]
-    let forecastDate; let forecastedIcon; let forecastTemp; let forecastDescription; let forecastIcon;  
+    let forecastDate; let forecastedIcon; let forecastTemp; let forecastDescription;
     function forecastedValues(response, input){
       forecastDate = ((response.data.list[input].dt_txt).split(" "))[0];
       console.log(forecastDate)
@@ -103,22 +102,24 @@ function populatingForecasts(input, response){
       console.log(forecastTemp)
       forecastDescription = response.data.list[input].weather[0].description
       console.log(forecastDescription)
-      forecastIcon = document.createElement("img")
-      forecastIcon.style.margin = 0
-      forecastIcon.style.padding = 0
+      if( forecastIconDiv.length !== 0){
+        forecastIconDiv.replaceChildren()
+      }
+      let forecastIcon = document.createElement("img")
       forecastIcon.src = `https://openweathermap.org/img/w/${forecastedIcon}.png`
       forecastIconDiv.appendChild(forecastIcon)
+      console.log(forecastIconDiv)
     }
     
-    if (input<=39){
-      forecastedValues(response, input)
-      input+=8
-    }else {
+    if (input > 39){
       input--
       let tempInput = input;
       forecastedValues(response, tempInput)
       forecastDate = ((response.data.list[input].dt_txt).split(" "))[0];
-      console.log(forecastDate)
+      console.log(forecastDate)     
+    }else {
+      forecastedValues(response, input)
+      input+=8  
       }
       
   fDate.innerHTML = forecastDate;
@@ -158,7 +159,7 @@ function populateForecasts(response){
 
 }
 function fiveDayWeatherForecast(lat, long){
-  apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=${celsiusConversion}&appid=${apiKey}`;
+  apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=${metric}&appid=${apiKey}`;
   axios.get(apiUrl).then(populateForecasts)
 }
 
@@ -171,7 +172,7 @@ function showGeoLocation(response) {
   geoLoc.innerHTML = `${lat}, ${lon}`;
   //5 day weatherForecast
   fiveDayWeatherForecast(lat, long)
-  apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=${celsiusConversion}&appid=${apiKey}`;
+  apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=${metric}&appid=${apiKey}`;
   axios.get(apiUrl).then(showApects);
   mapDetails(lat,lon)
 }
@@ -208,7 +209,7 @@ function showLocation() {
         geoLoc.innerHTML = `${lat}, ${lon}`;
         lat = position.coords.latitude;
         lon = position.coords.longitude;
-        apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=${celsiusConversion}&appid=${apiKey}`;
+        apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=${metric}&appid=${apiKey}`;
         axios.get(apiUrl).then(showApects);
 
     });
@@ -249,7 +250,9 @@ function unitFahreinheitConversion(){
 
 
 window.addEventListener("load", getInput)
-search.addEventListener("click",getInput);
+search.addEventListener("click", () =>{
+  event.preventDefault()
+  getInput});
 form.addEventListener("submit", getInput);
 getLocation.addEventListener("click", showLocation);
 fahreinheit.addEventListener("click", ()=> {

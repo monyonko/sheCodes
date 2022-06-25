@@ -102,13 +102,7 @@ body {
     margin: 0 auto;
     padding: 0;
   }
-
-  .iconSpace .icon{
-    flex:1
-  }
-  .iconSpace .f-description-one{
-    flex:1
-  }
+  
   .next-section{
     display:none;
     width:40vw;
